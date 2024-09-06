@@ -8,7 +8,6 @@ from .models import Chat
 def index(request, pk):
     if request.method == 'POST':
         print(request.POST.get)
-        # Chatni tozalash
         Chat.objects.filter(user_id=pk).delete()
         return JsonResponse({'status': 'success', 'message': 'Chat tozalandi!'})
 
@@ -22,7 +21,6 @@ def index(request, pk):
                     "message": q.message,
                     "timestamp": q.created_at.strftime("%I:%M %p")
                 })
-                # Do'stdan kelgan javob
                 messages.append({
                     "sender": "From OpenAI",
                     "message": q.answer,
